@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-  echo "Error: No destination IP address provided."
-  echo "Usage: $0 <destination-ip-address>"
-  exit 1
+    echo "Error: No destination IP address provided."
+    echo "Usage: $0 <destination-ip-address>"
+    exit 1
 fi
 
 serverip=$1
@@ -13,14 +13,14 @@ echo ""
 echo "Installing nginx HTTP server... "
 echo ""
 if apt -y install nginx; then
-  echo ""
-  echo "Nginx installed successfully."
-  echo ""
+    echo ""
+    echo "Nginx installed successfully."
+    echo ""
 else
-  echo ""
-  echo "Error installing Nginx HTTP server"
-  echo ""
-  exit 1
+    echo ""
+    echo "Error installing Nginx HTTP server"
+    echo ""
+    exit 1
 fi
 
 echo -n "Creating backup of nginx.conf... "
@@ -99,14 +99,20 @@ else
     exit 1
 fi
 
-echo -n "Making nginx run at system startup..."
+echo "Making nginx run at system startup... "
 if systemctl enable nginx; then
-    echo " OK"
+    echo ""
+    echo "OK. nginx will run at system startup"
+else
+    echo ""
+    echo "FAILED. nginx will not run at system startup"
 fi
 
 echo -n "Restarting nginx..."
 if systemctl restart nginx; then
     echo " OK"
+    echo ""
+    systemctl status nginx
     echo ""
     echo "ReverseProxy configured successfully"
 else
