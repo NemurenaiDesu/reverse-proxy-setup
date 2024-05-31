@@ -1,6 +1,22 @@
 #!/bin/bash
 
-read -p "Enter the IP address: " serverip
+echo ""
+echo "Installing nginx HTTP server... "
+echo ""
+if apt -y isntall nginx; then
+  echo ""
+  echo "Nginx installed successfully."
+  echo ""
+else
+  echo ""
+  echo ""
+  echo "Error installing Nginx HTTP server"
+  echo ""
+  exit 1
+end
+
+
+read -p "Enter the destination IP address: " serverip
 
 echo -n "Creating backup of nginx.conf... "
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak && echo "OK. Backup file: /etc/nginx/nginx.conf.bak"
