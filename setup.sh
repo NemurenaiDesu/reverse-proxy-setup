@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+  echo "Error: No destination IP address provided."
+  echo "Usage: $0 <destination-ip-address>"
+  exit 1
+fi
+
+serverip=$1
+
+
 echo ""
 echo "Installing nginx HTTP server... "
 echo ""
@@ -13,8 +22,6 @@ else
   echo ""
   exit 1
 fi
-
-read -p "Enter the destination IP address: " serverip
 
 echo -n "Creating backup of nginx.conf... "
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak && echo "OK. Backup file: /etc/nginx/nginx.conf.bak"
@@ -92,6 +99,10 @@ else
     exit 1
 fi
 
+echo -n "Making nginx run at system startup..."
+if systemctl enable nginx; then
+    echo " OK"
+fi
 
 echo -n "Restarting nginx..."
 if systemctl restart nginx; then
