@@ -3,18 +3,16 @@
 echo ""
 echo "Installing nginx HTTP server... "
 echo ""
-if apt -y isntall nginx; then
+if apt -y install nginx; then
   echo ""
   echo "Nginx installed successfully."
   echo ""
 else
   echo ""
-  echo ""
   echo "Error installing Nginx HTTP server"
   echo ""
   exit 1
-end
-
+fi
 
 read -p "Enter the destination IP address: " serverip
 
