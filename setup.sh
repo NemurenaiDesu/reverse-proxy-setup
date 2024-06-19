@@ -112,13 +112,13 @@ echo -n "Restarting nginx..."
 if systemctl restart nginx; then
     echo " OK"
     echo ""
-    systemctl status nginx
+    systemctl --no-pager status nginx
     echo ""
     echo "ReverseProxy configured successfully"
 else
     echo ""
-    echo "Something went wrong"
+    systemctl --no-pager status nginx
     echo ""
-    systemctl status nginx
+    echo "Something went wrong"
     exit 1
 fi
