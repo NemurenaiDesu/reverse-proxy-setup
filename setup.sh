@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
+    echo ""
     echo "Error: No destination IP address provided."
     echo "Usage: $0 <destination-ip-address>"
     exit 1
