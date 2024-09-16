@@ -10,8 +10,20 @@ serverip=$1
 
 
 echo ""
+echo "Updating system... "
+echo ""
+sleep 1
+
+DEBIAN_FRONTEND=noninteractive apt -y update
+DEBIAN_FRONTEND=noninteractive apt -y upgrade 
+
+echo ""
+echo "System updated successfully"
+
 echo "Installing nginx HTTP server... "
 echo ""
+sleep 1
+
 if apt -y install nginx; then
     echo ""
     echo "Nginx installed successfully."
